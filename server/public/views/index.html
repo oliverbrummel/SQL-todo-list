@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html ng-app = "todoApp">
   <head>
     <meta charset="utf-8">
     <title>Oliver's SQL todo list</title>
+    <script src = "vendor/angular/angular.min.js"></script>
+    <link rel = "stylesheet" href = "vendor/bootstrap/dist/css/bootstrap.min.css" />
+    <script src = "assets/scripts/client.min.js"></script>
   </head>
-  <body>
-    <h1>SQL to help me get stuffs done</h1>
+  <body ng-controller = "TodoController as controller">
+    <h2>What needs doing?</h2>
+    <p>enter message here: </p>
+      <input type = "text" ng-model = "controller.task.task_name"/>
+      <input type = "submit" ng-click = "controller.submitTask()"/>
 
-    <input type = "text" />
-    
+    <div>
+      <h3>Things to get Done</h3>
+      <ul>
+        <li ng-repeat = "item in controller.tasks">
+          Task: {{item.task_name}}
+          <br /> Completed
+          <button ng-click = "controller.changeStatus(item)">Complete</button>
+          <br />
+          <button ng-click = "controller.deleteTask(item)">Delete</button>
+        </li>
+      </ul>
+    </div>
   </body>
 </html>
